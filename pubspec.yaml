@@ -1,0 +1,15 @@
+name: eulogia_ui
+description: Unified design system and UI component package for Eulogia OS, Stokash, SchoolHQ, EUCloudHost, and all Flint Dart ecosystem apps.
+version: 0.1.0
+homepage: https://eulogia.tech
+repository: https://github.com/eulogia-tech/eulogia_ui
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flint_dart: ^1.5.2
+
+dev_dependencies:
+  lints: ^5.0.0
+  test: ^1.25.0
