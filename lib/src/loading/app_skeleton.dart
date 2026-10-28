@@ -72,12 +72,10 @@ class AppSkeleton extends StatelessComponent {
   /// Helper generating a grid of skeleton cards.
   static FlintNode grid({int count = 3, double height = 120, double gap = 16}) {
     return Grid(
-      columns: '1fr',
+      columns: GridTemplateColumns.one,
+      md: GridTemplateColumns.fractional([1, 1]),
+      lg: GridTemplateColumns.fractional([1, 1, 1]),
       gap: gap,
-      dartStyle: DartStyle(
-        md: DartStyle(gridTemplateColumns: 'repeat(2, minmax(0, 1fr))'),
-        lg: DartStyle(gridTemplateColumns: 'repeat(3, minmax(0, 1fr))'),
-      ),
       children: [
         for (var i = 0; i < count; i++)
           AppSkeleton.card(height: height),
