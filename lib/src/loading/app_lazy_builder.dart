@@ -23,3 +23,4 @@ class AppLazyLoader extends StatelessComponent {
     return child;
   }
 }
+
