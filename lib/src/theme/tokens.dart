@@ -55,12 +55,17 @@ abstract final class EuThemeColors {
   static const Color lightTeal = Color('#111827');
 
   // EUCloudHost Dark Theme
-  static const Color darkBg = Color('#030712');
+  static const Color darkBg = Color('#020617');
   static const Color darkInk = Color('#f8fafc');
-  static const Color darkMuted = Color('#94a3b8');
-  static const Color darkLine = Color.rgba(255, 255, 255, 0.08);
-  static const Color darkPanel = Color('#0b0f17');
-  static const Color darkPanelMuted = Color('#111827');
+  static const Color darkMuted = Color('#b6c3d6');
+  static const Color darkLine = Color.rgba(148, 163, 184, 0.18);
+  static const Color darkPanel = Color.rgba(10, 18, 33, 0.96);
+  static const Color darkPanelMuted = Color.rgba(15, 27, 46, 0.90);
+  static const Color darkAction = Color('#22c55e');
+  static const Color darkActionHover = Color('#4ade80');
+  static const Color darkActionSoft = Color.rgba(34, 197, 94, 0.16);
+  static const Color darkActionInk = Color('#052e16');
+  static const Color darkEmerald = Color('#34d399');
 }
 
 abstract final class EulogiaRadius {
