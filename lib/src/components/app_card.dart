@@ -8,6 +8,7 @@ enum AppCardVariant {
 }
 
 /// Unified Card component for the Eulogia Ecosystem design system.
+/// Dynamically aware of light and dark themes using ecosystem design tokens.
 class AppCard extends StatelessComponent {
   AppCard({
     this.title,
@@ -37,21 +38,24 @@ class AppCard extends StatelessComponent {
 
   @override
   View build() {
-    Color bg;
+    final tokenPanel = ThemeToken.color('panel');
+    final tokenPanelMuted = ThemeToken.color('panelMuted');
+    final tokenLine = ThemeToken.color('line');
+    final tokenInk = ThemeToken.color('ink');
+    final tokenMuted = ThemeToken.color('muted');
+
+    dynamic bg;
     Border border;
 
     switch (variant) {
       case AppCardVariant.glass:
-        bg = EulogiaColors.surfaceGlass;
-        border = Border.all(color: EulogiaColors.borderDefault);
-        break;
       case AppCardVariant.solid:
-        bg = EulogiaColors.surfaceSolid;
-        border = Border.all(color: EulogiaColors.borderDefault);
+        bg = tokenPanel;
+        border = Border.all(color: tokenLine);
         break;
       case AppCardVariant.subtle:
-        bg = EulogiaColors.surfaceMuted;
-        border = Border.all(color: EulogiaColors.borderSubtle);
+        bg = tokenPanelMuted;
+        border = Border.all(color: tokenLine);
         break;
     }
 
@@ -77,20 +81,20 @@ class AppCard extends StatelessComponent {
           children: [
             Text.h3(
               title!,
-              dartStyle: const DartStyle(
+              dartStyle: DartStyle(
                 fontSize: 15,
                 fontWeight: 700,
-                color: EulogiaColors.textPrimary,
+                color: tokenInk,
                 margin: EdgeInsets.zero,
               ),
             ),
             if (subtitle != null)
               Text.p(
                 subtitle!,
-                dartStyle: const DartStyle(
+                dartStyle: DartStyle(
                   fontSize: 12,
-                  color: EulogiaColors.textMuted,
-                  margin: EdgeInsets.only(top: 2),
+                  color: tokenMuted,
+                  margin: const EdgeInsets.only(top: 2),
                 ),
               ),
           ],
@@ -129,10 +133,17 @@ class AppCard extends StatelessComponent {
       dartStyle: DartStyle(
         background: bg,
         border: border,
-        radius: EulogiaRadius.lg,
+        radius: EulogiaRadius.md,
         padding: padding,
         display: Display.flex,
         flexDirection: FlexDirection.column,
+        color: tokenInk,
+        shadow: const Shadow(
+          y: 4,
+          blur: 16,
+          spread: -4,
+          color: Color.rgba(15, 23, 42, 0.05),
+        ),
       ).merge(dartStyle),
       children: cardContent,
     );

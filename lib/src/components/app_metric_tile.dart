@@ -2,6 +2,7 @@ import 'package:flint_dart/ui.dart';
 import '../theme/tokens.dart';
 
 /// Unified Metric Tile component for the Eulogia Ecosystem design system.
+/// Light-mode and dark-mode aware via ecosystem design tokens.
 class AppMetricTile extends StatelessComponent {
   AppMetricTile({
     required this.label,
@@ -25,6 +26,11 @@ class AppMetricTile extends StatelessComponent {
 
   @override
   View build() {
+    final tokenPanel = ThemeToken.color('panel');
+    final tokenLine = ThemeToken.color('line');
+    final tokenInk = ThemeToken.color('ink');
+    final tokenMuted = ThemeToken.color('muted');
+
     return Container(
       props: {
         if (onClick != null) 'onClick': onClick,
@@ -32,12 +38,18 @@ class AppMetricTile extends StatelessComponent {
       dartStyle: DartStyle(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         radius: EulogiaRadius.md,
-        background: EulogiaColors.surfaceGlass,
-        border: Border.all(color: EulogiaColors.borderDefault),
+        background: tokenPanel,
+        border: Border.all(color: tokenLine),
         display: Display.flex,
         flexDirection: FlexDirection.column,
         gap: 6,
         cursor: onClick != null ? Cursor.pointer : null,
+        shadow: const Shadow(
+          y: 4,
+          blur: 16,
+          spread: -4,
+          color: Color.rgba(15, 23, 42, 0.04),
+        ),
       ).merge(dartStyle),
       children: [
         Row(
@@ -57,11 +69,11 @@ class AppMetricTile extends StatelessComponent {
                 if (icon != null) Icon(icon!, size: 14, color: accent),
                 Text.span(
                   label.toUpperCase(),
-                  dartStyle: const DartStyle(
+                  dartStyle: DartStyle(
                     fontSize: 11,
                     fontWeight: 700,
                     letterSpacing: 0.5,
-                    color: EulogiaColors.textSecondary,
+                    color: tokenMuted,
                   ),
                 ),
               ],
@@ -71,10 +83,10 @@ class AppMetricTile extends StatelessComponent {
         ),
         Text.h3(
           value,
-          dartStyle: const DartStyle(
+          dartStyle: DartStyle(
             fontSize: 22,
             fontWeight: 800,
-            color: EulogiaColors.textPrimary,
+            color: tokenInk,
             margin: EdgeInsets.zero,
             lineHeight: 1.1,
           ),
@@ -82,9 +94,9 @@ class AppMetricTile extends StatelessComponent {
         if (sublabel != null)
           Text.p(
             sublabel!,
-            dartStyle: const DartStyle(
+            dartStyle: DartStyle(
               fontSize: 11,
-              color: EulogiaColors.textMuted,
+              color: tokenMuted,
               margin: EdgeInsets.zero,
             ),
           ),
