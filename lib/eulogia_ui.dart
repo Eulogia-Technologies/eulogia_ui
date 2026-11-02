@@ -14,6 +14,7 @@ export 'src/components/app_card.dart';
 export 'src/components/app_metric_tile.dart';
 export 'src/components/app_modal.dart';
 export 'src/components/app_status_indicator.dart';
+export 'src/components/app_tabs.dart';
 
 // EasyLoading & Lazy Loading
 export 'src/loading/app_lazy_builder.dart';

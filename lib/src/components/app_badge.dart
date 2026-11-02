@@ -16,6 +16,7 @@ enum AppBadgeSize {
 }
 
 /// Unified Badge / Pill indicator component for the Eulogia Ecosystem design system.
+/// Dynamically aware of light and dark themes using ecosystem design tokens.
 class AppBadge extends StatelessComponent {
   AppBadge({
     required this.label,
@@ -35,47 +36,51 @@ class AppBadge extends StatelessComponent {
 
   @override
   View build() {
-    Color bg;
+    dynamic bg;
     Border border;
-    Color text;
-    Color dotColor;
+    dynamic text;
+    dynamic dotColor;
+
+    final tokenLine = ThemeToken.color('line');
+    final tokenPanelMuted = ThemeToken.color('panelMuted');
+    final tokenMuted = ThemeToken.color('muted');
 
     switch (variant) {
       case AppBadgeVariant.success:
         bg = EulogiaColors.successBg;
         border = Border.all(color: EulogiaColors.successBorder);
-        text = const Color('#34d399');
-        dotColor = EulogiaColors.success;
+        text = ThemeToken.color('mint');
+        dotColor = ThemeToken.color('mint');
         break;
       case AppBadgeVariant.warning:
         bg = EulogiaColors.warningBg;
         border = Border.all(color: EulogiaColors.warningBorder);
-        text = const Color('#fbbf24');
-        dotColor = EulogiaColors.warning;
+        text = ThemeToken.color('gold');
+        dotColor = ThemeToken.color('gold');
         break;
       case AppBadgeVariant.danger:
         bg = EulogiaColors.dangerBg;
         border = Border.all(color: EulogiaColors.dangerBorder);
-        text = const Color('#f87171');
-        dotColor = EulogiaColors.danger;
+        text = ThemeToken.color('danger');
+        dotColor = ThemeToken.color('danger');
         break;
       case AppBadgeVariant.info:
         bg = EulogiaColors.infoBg;
         border = Border.all(color: EulogiaColors.infoBorder);
-        text = const Color('#60a5fa');
-        dotColor = EulogiaColors.info;
+        text = const Color('#2563eb');
+        dotColor = const Color('#2563eb');
         break;
       case AppBadgeVariant.brand:
         bg = EulogiaColors.brandMuted;
         border = Border.all(color: const Color.rgba(16, 185, 129, 0.4));
-        text = const Color('#34d399');
+        text = ThemeToken.color('teal');
         dotColor = EulogiaColors.brandPrimary;
         break;
       case AppBadgeVariant.neutral:
-        bg = EulogiaColors.surfaceMuted;
-        border = Border.all(color: EulogiaColors.borderSubtle);
-        text = EulogiaColors.textSecondary;
-        dotColor = EulogiaColors.textSecondary;
+        bg = tokenPanelMuted;
+        border = Border.all(color: tokenLine);
+        text = tokenMuted;
+        dotColor = tokenMuted;
         break;
     }
 
@@ -92,7 +97,7 @@ class AppBadge extends StatelessComponent {
           dartStyle: DartStyle(
             width: 6,
             height: 6,
-            radius: 999,
+            radius: EulogiaRadius.full,
             background: dotColor,
             margin: const EdgeInsets.only(right: 6),
           ),
@@ -116,7 +121,7 @@ class AppBadge extends StatelessComponent {
         label,
         dartStyle: DartStyle(
           fontSize: fontSize,
-          fontWeight: 600,
+          fontWeight: 700,
           color: text,
           letterSpacing: 0.3,
         ),

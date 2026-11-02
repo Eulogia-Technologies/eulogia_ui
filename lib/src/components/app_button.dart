@@ -76,7 +76,7 @@ class AppButton extends StatelessComponent {
       contentNodes.add(
         Text.span(
           text!,
-          dartStyle: const DartStyle(fontWeight: 700),
+          dartStyle: DartStyle(fontWeight: 700, color: effectiveStyle.color),
         ),
       );
     } else if (child != null) {
@@ -138,37 +138,53 @@ class AppButton extends StatelessComponent {
         break;
     }
 
-    Color bg;
-    Color fg;
-    Border? border;
+    final tokenLine = ThemeToken.color('line');
+    final tokenPanel = ThemeToken.color('panel');
+    final tokenPanelMuted = ThemeToken.color('panelMuted');
+    final tokenInk = ThemeToken.color('ink');
+
+    dynamic bg;
+    dynamic fg;
+    Border border;
+    DartStyle? hoverStyle;
 
     switch (variant) {
       case AppButtonVariant.primary:
         bg = EulogiaColors.brandPrimary;
         fg = const Color('#052e16');
+        border = Border.all(color: const Color.rgba(0, 0, 0, 0));
+        hoverStyle = const DartStyle(background: EulogiaColors.brandHover);
         break;
       case AppButtonVariant.secondary:
-        bg = EulogiaColors.surfaceSolid;
-        fg = EulogiaColors.textPrimary;
-        border = Border.all(color: EulogiaColors.borderDefault);
+        bg = tokenPanelMuted;
+        fg = tokenInk;
+        border = Border(color: tokenLine);
+        hoverStyle = DartStyle(background: tokenPanel, border: Border(color: tokenLine));
         break;
       case AppButtonVariant.ghost:
         bg = const Color.rgba(0, 0, 0, 0);
-        fg = EulogiaColors.textPrimary;
+        fg = tokenInk;
+        border = Border.all(color: const Color.rgba(0, 0, 0, 0));
+        hoverStyle = DartStyle(background: tokenPanelMuted, color: tokenInk);
         break;
       case AppButtonVariant.pill:
         bg = EulogiaColors.brandPrimary;
         fg = const Color('#052e16');
         radius = EulogiaRadius.full;
+        border = Border.all(color: const Color.rgba(0, 0, 0, 0));
+        hoverStyle = const DartStyle(background: EulogiaColors.brandHover);
         break;
       case AppButtonVariant.outline:
         bg = const Color.rgba(0, 0, 0, 0);
-        fg = EulogiaColors.brandPrimary;
-        border = Border.all(color: EulogiaColors.brandPrimary);
+        fg = tokenInk;
+        border = Border(color: tokenLine);
+        hoverStyle = DartStyle(background: tokenPanelMuted, border: Border(color: tokenLine));
         break;
       case AppButtonVariant.danger:
         bg = EulogiaColors.danger;
         fg = const Color('#ffffff');
+        border = Border.all(color: const Color.rgba(0, 0, 0, 0));
+        hoverStyle = const DartStyle(background: Color('#dc2626'));
         break;
     }
 
@@ -186,6 +202,7 @@ class AppButton extends StatelessComponent {
       border: border,
       cursor: (disabled || loading) ? Cursor.notAllowed : Cursor.pointer,
       opacity: (disabled || loading) ? 0.6 : 1.0,
+      hover: hoverStyle,
     );
   }
 }

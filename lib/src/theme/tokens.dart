@@ -39,6 +39,35 @@ abstract final class EulogiaColors {
   static const Color textMuted = Color('rgba(241, 245, 249, 0.55)');
 }
 
+/// EUCloudHost-exact colors and tokens for light and dark admin workspace designs.
+abstract final class EuThemeColors {
+  // EUCloudHost Light Theme
+  static const Color lightBg = Color('#f5fbf8');
+  static const Color lightInk = Color('#0f172a');
+  static const Color lightMuted = Color('#526170');
+  static const Color lightLine = Color.rgba(15, 23, 42, 0.10);
+  static const Color lightPanel = Colors.white;
+  static const Color lightPanelMuted = Color('#f8fafc');
+  static const Color lightAction = Color('#0f172a');
+  static const Color lightActionHover = Color('#1e293b');
+  static const Color lightActionSoft = Color.rgba(15, 23, 42, 0.06);
+  static const Color lightEmerald = Color('#10b981');
+  static const Color lightTeal = Color('#111827');
+
+  // EUCloudHost Dark Theme
+  static const Color darkBg = Color('#020617');
+  static const Color darkInk = Color('#f8fafc');
+  static const Color darkMuted = Color('#b6c3d6');
+  static const Color darkLine = Color.rgba(148, 163, 184, 0.18);
+  static const Color darkPanel = Color.rgba(10, 18, 33, 0.96);
+  static const Color darkPanelMuted = Color.rgba(15, 27, 46, 0.90);
+  static const Color darkAction = Color('#22c55e');
+  static const Color darkActionHover = Color('#4ade80');
+  static const Color darkActionSoft = Color.rgba(34, 197, 94, 0.16);
+  static const Color darkActionInk = Color('#052e16');
+  static const Color darkEmerald = Color('#34d399');
+}
+
 abstract final class EulogiaRadius {
   static const double sm = 6.0;
   static const double md = 10.0;

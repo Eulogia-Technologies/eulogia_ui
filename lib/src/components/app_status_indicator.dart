@@ -9,6 +9,7 @@ enum AppStatusType {
 }
 
 /// Unified Status Indicator component for the Eulogia Ecosystem design system.
+/// Dynamically aware of light and dark themes using ecosystem design tokens.
 class AppStatusIndicator extends StatelessComponent {
   AppStatusIndicator({
     required this.status,
@@ -22,39 +23,39 @@ class AppStatusIndicator extends StatelessComponent {
 
   @override
   View build() {
-    Color bg;
-    Color border;
-    Color dot;
-    Color text;
+    dynamic bg;
+    Border border;
+    dynamic dot;
+    dynamic text;
     String defaultLabel;
 
     switch (status) {
       case AppStatusType.operational:
         bg = EulogiaColors.successBg;
-        border = EulogiaColors.successBorder;
+        border = Border.all(color: EulogiaColors.successBorder);
         dot = EulogiaColors.success;
-        text = const Color('#34d399');
+        text = ThemeToken.color('mint');
         defaultLabel = 'Operational';
         break;
       case AppStatusType.degraded:
         bg = EulogiaColors.warningBg;
-        border = EulogiaColors.warningBorder;
+        border = Border.all(color: EulogiaColors.warningBorder);
         dot = EulogiaColors.warning;
-        text = const Color('#fbbf24');
+        text = ThemeToken.color('gold');
         defaultLabel = 'Degraded';
         break;
       case AppStatusType.offline:
         bg = EulogiaColors.dangerBg;
-        border = EulogiaColors.dangerBorder;
+        border = Border.all(color: EulogiaColors.dangerBorder);
         dot = EulogiaColors.danger;
-        text = const Color('#f87171');
+        text = ThemeToken.color('danger');
         defaultLabel = 'Offline';
         break;
       case AppStatusType.maintenance:
         bg = EulogiaColors.infoBg;
-        border = EulogiaColors.infoBorder;
+        border = Border.all(color: EulogiaColors.infoBorder);
         dot = EulogiaColors.info;
-        text = const Color('#60a5fa');
+        text = const Color('#2563eb');
         defaultLabel = 'Maintenance';
         break;
     }
@@ -71,14 +72,14 @@ class AppStatusIndicator extends StatelessComponent {
             : const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         radius: EulogiaRadius.full,
         background: bg,
-        border: Border.all(color: border),
+        border: border,
       ),
       children: [
         Container(
           dartStyle: DartStyle(
             width: 6,
             height: 6,
-            radius: 999,
+            radius: EulogiaRadius.full,
             background: dot,
           ),
         ),
